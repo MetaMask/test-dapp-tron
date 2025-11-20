@@ -1,0 +1,101 @@
+{
+  "name": "@metamask/test-dapp-tron",
+  "version": "0.1.0",
+  "license": "ISC",
+  "description": "A test dapp for tron",
+  "homepage": "https://metamask.github.io/test-dapp-tron",
+  "bugs": {
+    "url": "https://github.com/MetaMask/test-dapp-tron/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/test-dapp-tron.git"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./index.js",
+  "types": "./dist/index.d.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 8081",
+    "build": "tsc -b && vite build && tsc --project tsconfig.test.json --outDir dist",
+    "format": "biome format",
+    "format:fix": "biome format --write",
+    "lint": "yarn lint:biome && yarn format && yarn lint:constraints && yarn lint:misc --check && yarn lint:dependencies --check && yarn lint:changelog",
+    "lint:changelog": "auto-changelog validate --prettier",
+    "lint:constraints": "yarn constraints",
+    "lint:dependencies": "depcheck && yarn dedupe",
+    "lint:biome": "biome check",
+    "lint:fix": "yarn lint:biome --fix && yarn format:fix && yarn lint:constraints --fix && yarn lint:misc --write && yarn lint:dependencies && yarn lint:changelog",
+    "lint:misc": "prettier '**/*.json' '**/*.md' '**/*.yml' '!.yarnrc.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
+    "prepack": "./scripts/prepack.sh",
+    "start": "vite preview --port 8081",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@tronweb3/tronwallet-adapter-react-hooks": "^1.0.14",
+    "@tronweb3/tronwallet-adapter-react-ui": "^1.0.14",
+    "@tronweb3/tronwallet-adapters": "^1.1.14",
+    "buffer": "^6.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tronweb": "^6.1.0",
+    "vite-plugin-node-polyfills": "^0.22.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@lavamoat/allow-scripts": "^3.0.4",
+    "@lavamoat/preinstall-always-fail": "^2.0.0",
+    "@metamask/auto-changelog": "^5.0.1",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/bs58": "^4.0.4",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@yarnpkg/types": "^4.0.1",
+    "depcheck": "^1.4.7",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1",
+    "vitest": "^3.1.1"
+  },
+  "packageManager": "yarn@4.1.1",
+  "engines": {
+    "node": "^18.18 || >=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false,
+      "@biomejs/biome": false,
+      "@vitejs/plugin-react-swc>@swc/core": false,
+      "vite>esbuild": false,
+      "jsdom>ws>bufferutil": false,
+      "jsdom>ws>utf-8-validate": false,
+      "@tronweb3/tronwallet-adapters>@tronweb3/tronwallet-adapter-walletconnect>@tronweb3/walletconnect-tron>@reown/appkit": false,
+      "@tronweb3/tronwallet-adapters>@tronweb3/tronwallet-adapter-walletconnect>@wagmi/core>@wagmi/connectors>@coinbase/wallet-sdk>keccak": false
+    }
+  }
+}
