@@ -5,11 +5,12 @@ import { type FC, useMemo } from 'react';
 import '@tronweb3/tronwallet-adapter-react-ui/style.css';
 import { TestPage } from './pages/TestPage';
 
+import { MetaMaskAdapter } from '@metamask/connect-tron';
 import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
 import { NetworkProvider } from './contexts/NetworkContext';
 
 const AppContent: FC = () => {
-  const wallets = useMemo(() => [new TronLinkAdapter()], []);
+  const wallets = useMemo(() => [new TronLinkAdapter(), new MetaMaskAdapter()], []);
 
   return (
     <WalletProvider adapters={wallets} autoConnect={true}>
