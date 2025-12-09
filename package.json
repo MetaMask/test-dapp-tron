@@ -1,6 +1,6 @@
 {
   "name": "@metamask/test-dapp-tron",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "ISC",
   "description": "A test dapp for tron",
   "homepage": "https://metamask.github.io/test-dapp-tron",
