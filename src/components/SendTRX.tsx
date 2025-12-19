@@ -116,6 +116,7 @@ export const SendTRX: FC = () => {
       <div style={{ marginBottom: '1rem' }}>
         <label htmlFor="amount">Amount (TRX):</label>
         <input
+          data-testid={dataTestIds.testPage.sendTRX.amount}
           type="number"
           value={amount}
           onChange={handleAmountChange}

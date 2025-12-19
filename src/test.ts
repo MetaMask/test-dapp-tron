@@ -52,6 +52,7 @@ export const dataTestIds = pathifyObject({
       sendTransaction: true,
       signedTransaction: true,
       transactionHash: true,
+      amount: true,
     },
     sendTRX: {
       id: true,
@@ -60,6 +61,7 @@ export const dataTestIds = pathifyObject({
       sendTransaction: true,
       signedTransaction: true,
       transactionHash: true,
+      amount: true,
     },
   },
 } as const);

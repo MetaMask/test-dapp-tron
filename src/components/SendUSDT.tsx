@@ -136,6 +136,7 @@ export const SendUSDT: FC = () => {
       <div style={{ marginBottom: '1rem' }}>
         <label htmlFor="amount">Amount (USDT):</label>
         <input
+          data-testid={dataTestIds.testPage.sendUSDT.amount}
           type="number"
           value={amount}
           onChange={handleAmountChange}
