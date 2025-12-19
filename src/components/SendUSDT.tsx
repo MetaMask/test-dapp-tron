@@ -136,6 +136,7 @@ export const SendUSDT: FC = () => {
       <div style={{ marginBottom: '1rem' }}>
         <label htmlFor="amount">Amount (USDT):</label>
         <input
+          data-testid={dataTestIds.testPage.sendUSDT.amount}
           type="number"
           value={amount}
           onChange={handleAmountChange}
@@ -186,7 +187,7 @@ export const SendUSDT: FC = () => {
       {transactionHash && (
         <>
           <h3>Transaction</h3>
-          <TransactionHash data-testid={dataTestIds.testPage.sendUSDT.transactionHash} hash={transactionHash} />
+          <TransactionHash hash={transactionHash} />
         </>
       )}
     </div>

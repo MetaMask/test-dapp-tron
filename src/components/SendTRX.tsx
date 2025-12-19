@@ -116,6 +116,7 @@ export const SendTRX: FC = () => {
       <div style={{ marginBottom: '1rem' }}>
         <label htmlFor="amount">Amount (TRX):</label>
         <input
+          data-testid={dataTestIds.testPage.sendTRX.amount}
           type="number"
           value={amount}
           onChange={handleAmountChange}
@@ -164,7 +165,7 @@ export const SendTRX: FC = () => {
       {transactionHash && (
         <>
           <h3>Transaction</h3>
-          <TransactionHash data-testid={dataTestIds.testPage.sendTRX.transactionHash} hash={transactionHash} />
+          <TransactionHash hash={transactionHash} />
         </>
       )}
     </div>
