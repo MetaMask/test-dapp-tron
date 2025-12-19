@@ -28,6 +28,7 @@ export declare const dataTestIds: Pathify<{
             readonly sendTransaction: true;
             readonly signedTransaction: true;
             readonly transactionHash: true;
+            readonly amount: true;
         };
         readonly sendTRX: {
             readonly id: true;
@@ -36,6 +37,7 @@ export declare const dataTestIds: Pathify<{
             readonly sendTransaction: true;
             readonly signedTransaction: true;
             readonly transactionHash: true;
+            readonly amount: true;
         };
     };
 }, "">;

@@ -47,6 +47,7 @@ exports.dataTestIds = pathifyObject({
             sendTransaction: true,
             signedTransaction: true,
             transactionHash: true,
+            amount: true,
         },
         sendTRX: {
             id: true,
@@ -55,6 +56,7 @@ exports.dataTestIds = pathifyObject({
             sendTransaction: true,
             signedTransaction: true,
             transactionHash: true,
+            amount: true,
         },
     },
 });
