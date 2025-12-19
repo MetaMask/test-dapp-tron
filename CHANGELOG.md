@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1]
 
-### Uncategorized
+### Added
 
-- Feat/update data test ids ([#14](https://github.com/MetaMask/test-dapp-tron/pull/14))
+- Added missing `data-testid` fields ([#14](https://github.com/MetaMask/test-dapp-tron/pull/14))
 
 ## [0.2.0]
 
