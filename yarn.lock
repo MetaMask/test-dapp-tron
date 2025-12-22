@@ -857,12 +857,12 @@ __metadata:
   linkType: hard
 
 "@metamask/error-reporting-service@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@metamask/error-reporting-service@npm:3.0.0"
+  version: 3.0.1
+  resolution: "@metamask/error-reporting-service@npm:3.0.1"
   dependencies:
     "@metamask/base-controller": "npm:^9.0.0"
     "@metamask/messenger": "npm:^0.3.0"
-  checksum: 10/f62921c4b185ae2d7524230da35e8f6e9d18554931fc1c72da2c0e59a27c8b7ceaa12d5a94f6fda4a9a313abce71fa59c76954615a13e28df7830b7e716664e5
+  checksum: 10/e6cc55d07cd92a434d5eceffe88c4eba02410f6ae3cb166f4c394087adc8cd07488d00a8b87a5994674b9e7f179cb857c541607a38597a430d41170217ac6d26
   languageName: node
   linkType: hard
 
