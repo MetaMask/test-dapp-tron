@@ -165,7 +165,7 @@ export const SendTRX: FC = () => {
       {transactionHash && (
         <>
           <h3>Transaction</h3>
-          <TransactionHash hash={transactionHash} />
+          <TransactionHash testId={dataTestIds.testPage.sendTRX.transactionHash} hash={transactionHash} />
         </>
       )}
     </div>
