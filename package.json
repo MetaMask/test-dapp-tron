@@ -50,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "@metamask/connect-tron": "0.1.0",
+    "@metamask/connect-tron": "0.2.0",
     "@tronweb3/tronwallet-adapter-react-hooks": "^1.0.14",
     "@tronweb3/tronwallet-adapter-react-ui": "^1.0.14",
     "@tronweb3/tronwallet-adapters": "^1.1.14",
