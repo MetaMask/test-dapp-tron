@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0]
 
-### Uncategorized
+### Changed
 
 - chore: update @metamask/connect-tron to version 0.3.0 ([#26](https://github.com/MetaMask/test-dapp-tron/pull/26))
 
