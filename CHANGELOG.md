@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.1]
 
-### Uncategorized
+### Fixed
 
 - fix: don't export unnecessary dependencies ([#28](https://github.com/MetaMask/test-dapp-tron/pull/28))
 
