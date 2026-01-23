@@ -54,7 +54,7 @@
     "@lavamoat/allow-scripts": "^3.0.4",
     "@lavamoat/preinstall-always-fail": "^2.0.0",
     "@metamask/auto-changelog": "^5.0.1",
-    "@metamask/connect-tron": "0.3.0",
+    "@metamask/connect-tron": "0.3.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@tronweb3/tronwallet-adapter-react-hooks": "^1.0.14",
