@@ -2,6 +2,7 @@ import { useWallet } from '@tronweb3/tronwallet-adapter-react-hooks';
 import { WalletActionButton } from '@tronweb3/tronwallet-adapter-react-ui';
 import { type FC, useCallback } from 'react';
 import { TRON_NETWORKS } from '../config';
+import { useAdapterVariant } from '../contexts/AdapterVariantContext';
 import { useNetwork } from '../contexts/NetworkContext';
 import { dataTestIds } from '../test';
 import { Account } from './Account';
@@ -14,6 +15,7 @@ type HeaderProps = {};
 export const Header: FC<HeaderProps> = () => {
   const { address, connected } = useWallet();
   const { selectedNetwork, switchChain } = useNetwork();
+  const { variant, setVariant } = useAdapterVariant();
 
   const handleNetworkChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -22,6 +24,12 @@ export const Header: FC<HeaderProps> = () => {
     },
     [switchChain],
   );
+
+  const handleToggle = useCallback(() => {
+    setVariant(variant === 'tronweb3' ? 'metamask' : 'tronweb3');
+  }, [variant, setVariant]);
+
+  const isMetaMask = variant === 'metamask';
 
   return (
     <div
@@ -64,6 +72,64 @@ export const Header: FC<HeaderProps> = () => {
       <div style={{ wordWrap: 'break-word' }}>
         <strong>Wallet:</strong>
         <div data-testid={dataTestIds.testPage.header.account}>{address ? <Account account={address} /> : 'N/A'}</div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+        <strong>MetaMask Adapter:</strong>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span
+            style={{
+              fontSize: '0.75rem',
+              fontWeight: isMetaMask ? 400 : 600,
+              color: isMetaMask ? '#999' : '#512da8',
+              transition: 'color 0.2s',
+            }}
+          >
+            TronAdapter
+          </span>
+          <button
+            data-testid={dataTestIds.testPage.header.metamaskAdapterToggle}
+            onClick={handleToggle}
+            aria-pressed={isMetaMask}
+            type="button"
+            aria-label={`MetaMask adapter: currently using ${isMetaMask ? 'MetaMask connect-tron' : 'TronAdapter metamask-tron'}`}
+            style={{
+              position: 'relative',
+              width: '44px',
+              height: '24px',
+              backgroundColor: isMetaMask ? '#512da8' : '#ccc',
+              borderRadius: '12px',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              flexShrink: 0,
+              transition: 'background-color 0.2s ease',
+            }}
+          >
+            <span
+              style={{
+                position: 'absolute',
+                top: '2px',
+                left: isMetaMask ? '22px' : '2px',
+                width: '20px',
+                height: '20px',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                transition: 'left 0.2s ease',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.35)',
+              }}
+            />
+          </button>
+          <span
+            style={{
+              fontSize: '0.75rem',
+              fontWeight: isMetaMask ? 600 : 400,
+              color: isMetaMask ? '#512da8' : '#999',
+              transition: 'color 0.2s',
+            }}
+          >
+            MetaMask
+          </span>
+        </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <WalletActionButton
