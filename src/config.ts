@@ -22,7 +22,7 @@ export const CONTRACT_ADDRESSES = {
   nile: {
     USDT: 'TXLAQ63Xg1NAzckPwKHvzw7CSEmLMEqcdj', // Nile testnet USDT
   },
-};
+} as const;
 
 /**
  * The default Tron network configurations.
@@ -43,24 +43,27 @@ export const TRON_NETWORKS = {
     name: 'Nile Testnet',
     chainId: '0xcd8690dc',
   },
-};
+} as const;
+
+/**
+ * Mapping of our network keys to WalletConnect's expected network names.
+ */
+export type NetworkKey = keyof typeof TRON_NETWORKS;
 
 /**
  * Get the default network key.
  */
-export const getDefaultNetworkKey = (): keyof typeof TRON_NETWORKS => {
+export const getDefaultNetworkKey = (): NetworkKey => {
   // Find the key of DEFAULT_NETWORK
   return (
-    (Object.keys(TRON_NETWORKS) as Array<keyof typeof TRON_NETWORKS>).find(
-      (key) => TRON_NETWORKS[key] === DEFAULT_NETWORK,
-    ) || 'mainnet'
+    (Object.keys(TRON_NETWORKS) as NetworkKey[]).find((key) => TRON_NETWORKS[key] === DEFAULT_NETWORK) || 'mainnet'
   );
 };
 
 /**
  * Get TronWeb configuration for a specific network.
  */
-export const getTronWebConfig = (network: keyof typeof TRON_NETWORKS = getDefaultNetworkKey()) => {
+export const getTronWebConfig = (network: NetworkKey = getDefaultNetworkKey()) => {
   const networkConfig = TRON_NETWORKS[network];
   const config: any = {
     fullHost: networkConfig.fullHost,
@@ -75,11 +78,20 @@ export const getTronWebConfig = (network: keyof typeof TRON_NETWORKS = getDefaul
 };
 
 /**
+ * WalletConnect expects specific network names. This mapping translates our internal network keys to those expected by WalletConnect.
+ */
+export const getWCNetworkName: Record<NetworkKey, 'Mainnet' | 'Shasta' | 'Nile'> = {
+  mainnet: 'Mainnet',
+  shasta: 'Shasta',
+  nile: 'Nile',
+};
+
+/**
  * Get contract address for a specific network and contract type.
  */
 export const getContractAddress = (
   contract: keyof typeof CONTRACT_ADDRESSES.mainnet,
-  network: keyof typeof TRON_NETWORKS = getDefaultNetworkKey(),
+  network: NetworkKey = getDefaultNetworkKey(),
 ) => {
   return CONTRACT_ADDRESSES[network][contract];
 };

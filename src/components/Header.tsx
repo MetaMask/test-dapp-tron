@@ -3,7 +3,7 @@ import { WalletActionButton } from '@tronweb3/tronwallet-adapter-react-ui';
 import { type FC, useCallback } from 'react';
 import { TRON_NETWORKS } from '../config';
 import { useAdapterVariant } from '../contexts/AdapterVariantContext';
-import { useNetwork } from '../contexts/NetworkContext';
+import { useNetwork, useNetworkSelection } from '../contexts/NetworkContext';
 import { dataTestIds } from '../test';
 import { Account } from './Account';
 
@@ -14,15 +14,16 @@ type HeaderProps = {};
  */
 export const Header: FC<HeaderProps> = () => {
   const { address, connected } = useWallet();
-  const { selectedNetwork, switchChain } = useNetwork();
+  const { selectedNetwork } = useNetwork();
+  const { setSelectedNetwork } = useNetworkSelection();
   const { variant, setVariant } = useAdapterVariant();
 
   const handleNetworkChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
       const network = event.target.value as keyof typeof TRON_NETWORKS;
-      switchChain(network);
+      setSelectedNetwork(network);
     },
-    [switchChain],
+    [setSelectedNetwork],
   );
 
   const handleToggle = useCallback(() => {
