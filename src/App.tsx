@@ -1,22 +1,45 @@
 import { WalletProvider } from '@tronweb3/tronwallet-adapter-react-hooks';
 import { WalletModalProvider } from '@tronweb3/tronwallet-adapter-react-ui';
-import { type FC, useMemo } from 'react';
+import { type FC, useMemo, useRef } from 'react';
 
 import '@tronweb3/tronwallet-adapter-react-ui/style.css';
 import { TestPage } from './pages/TestPage';
 
 import { MetaMaskAdapter as MetaMaskConnectTronAdapter } from '@metamask/connect-tron';
-import { TronLinkAdapter, MetaMaskAdapter as TronWeb3MetaMaskAdapter } from '@tronweb3/tronwallet-adapters';
+import {
+  TronLinkAdapter,
+  MetaMaskAdapter as TronWeb3MetaMaskAdapter,
+  WalletConnectAdapter,
+} from '@tronweb3/tronwallet-adapters';
+import { getWCNetworkName } from './config';
 import { AdapterVariantProvider, useAdapterVariant } from './contexts/AdapterVariantContext';
-import { NetworkProvider } from './contexts/NetworkContext';
+import { NetworkProvider, NetworkSelectionProvider, useNetworkSelection } from './contexts/NetworkContext';
 
 const AppContent: FC = () => {
   const { variant } = useAdapterVariant();
+  const { selectedNetwork } = useNetworkSelection();
+
+  // Capture the network at mount time so the WalletConnectAdapter is only
+  // created once per variant change. Network switches after connection are
+  // handled by NetworkProvider.switchChain, avoiding a full reconnect.
+  const initialNetwork = useRef(selectedNetwork);
 
   const wallets = useMemo(
     () => [
       new TronLinkAdapter(),
       variant === 'metamask' ? new MetaMaskConnectTronAdapter() : new TronWeb3MetaMaskAdapter(),
+      new WalletConnectAdapter({
+        network: getWCNetworkName[initialNetwork.current],
+        options: {
+          projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID ?? '',
+          metadata: {
+            name: 'MetaMask Tron Test DApp',
+            description: 'Test DApp for Tron',
+            url: window.location.origin,
+            icons: [],
+          },
+        },
+      }),
     ],
     [variant],
   );
@@ -56,8 +79,10 @@ const AppContent: FC = () => {
 
 export const App: FC = () => {
   return (
-    <AdapterVariantProvider>
-      <AppContent />
-    </AdapterVariantProvider>
+    <NetworkSelectionProvider>
+      <AdapterVariantProvider>
+        <AppContent />
+      </AdapterVariantProvider>
+    </NetworkSelectionProvider>
   );
 };
