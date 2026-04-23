@@ -5,15 +5,24 @@ import { type FC, useMemo } from 'react';
 import '@tronweb3/tronwallet-adapter-react-ui/style.css';
 import { TestPage } from './pages/TestPage';
 
-import { MetaMaskAdapter } from '@metamask/connect-tron';
-import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
+import { MetaMaskAdapter as MetaMaskConnectTronAdapter } from '@metamask/connect-tron';
+import { TronLinkAdapter, MetaMaskAdapter as TronWeb3MetaMaskAdapter } from '@tronweb3/tronwallet-adapters';
+import { AdapterVariantProvider, useAdapterVariant } from './contexts/AdapterVariantContext';
 import { NetworkProvider } from './contexts/NetworkContext';
 
 const AppContent: FC = () => {
-  const wallets = useMemo(() => [new TronLinkAdapter(), new MetaMaskAdapter()], []);
+  const { variant } = useAdapterVariant();
+
+  const wallets = useMemo(
+    () => [
+      new TronLinkAdapter(),
+      variant === 'metamask' ? new MetaMaskConnectTronAdapter() : new TronWeb3MetaMaskAdapter(),
+    ],
+    [variant],
+  );
 
   return (
-    <WalletProvider adapters={wallets} autoConnect={true}>
+    <WalletProvider key={variant} adapters={wallets} autoConnect={true}>
       <WalletModalProvider>
         <NetworkProvider>
           <div
@@ -46,5 +55,9 @@ const AppContent: FC = () => {
 };
 
 export const App: FC = () => {
-  return <AppContent />;
+  return (
+    <AdapterVariantProvider>
+      <AppContent />
+    </AdapterVariantProvider>
+  );
 };
