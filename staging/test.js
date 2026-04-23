@@ -33,6 +33,7 @@ exports.dataTestIds = pathifyObject({
             disconnect: true,
             account: true,
             connectionStatus: true,
+            metamaskAdapterToggle: true,
         },
         signMessage: {
             id: true,
