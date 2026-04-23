@@ -114,7 +114,9 @@ export const NetworkProvider: React.FC<NetworkProviderProps> = ({ children }) =>
 
   // Keep activeNetwork in sync with chainChanged events (local only).
   useEffect(() => {
-    if (!wallet) return;
+    if (!wallet) {
+      return;
+    }
 
     const handleChainChanged = (chainData: unknown) => {
       console.log('Chain changed detected in NetworkProvider:', chainData);

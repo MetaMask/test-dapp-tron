@@ -6,8 +6,11 @@ import '@tronweb3/tronwallet-adapter-react-ui/style.css';
 import { TestPage } from './pages/TestPage';
 
 import { MetaMaskAdapter as MetaMaskConnectTronAdapter } from '@metamask/connect-tron';
-import { WalletConnectAdapter } from '@tronweb3/tronwallet-adapter-walletconnect';
-import { TronLinkAdapter, MetaMaskAdapter as TronWeb3MetaMaskAdapter } from '@tronweb3/tronwallet-adapters';
+import {
+  TronLinkAdapter,
+  MetaMaskAdapter as TronWeb3MetaMaskAdapter,
+  WalletConnectAdapter,
+} from '@tronweb3/tronwallet-adapters';
 import { getWCNetworkName } from './config';
 import { AdapterVariantProvider, useAdapterVariant } from './contexts/AdapterVariantContext';
 import { NetworkProvider, NetworkSelectionProvider, useNetworkSelection } from './contexts/NetworkContext';
