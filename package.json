@@ -95,6 +95,7 @@
       "jsdom>ws>utf-8-validate": false,
       "@tronweb3/tronwallet-adapters>@tronweb3/tronwallet-adapter-walletconnect>@tronweb3/walletconnect-tron>@reown/appkit": false,
       "@tronweb3/tronwallet-adapters>@tronweb3/tronwallet-adapter-walletconnect>@wagmi/core>@wagmi/connectors>@coinbase/wallet-sdk>keccak": false,
+      "@tronweb3/tronwallet-adapters>@tronweb3/tronwallet-adapter-ledger-evm>@ledgerhq/hw-app-eth>@ledgerhq/domain-service>eip55>keccak": false,
       "vitest>vite-node>vite>esbuild": false,
       "vitest>vite>esbuild": false
     }
