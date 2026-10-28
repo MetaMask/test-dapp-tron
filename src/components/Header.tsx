@@ -4,6 +4,7 @@ import { type FC, useCallback } from 'react';
 import { TRON_NETWORKS } from '../config';
 import { useAdapterVariant } from '../contexts/AdapterVariantContext';
 import { useNetwork, useNetworkSelection } from '../contexts/NetworkContext';
+import { useMetaMaskReady } from '../hooks/useMetaMaskReady';
 import { dataTestIds } from '../test';
 import { Account } from './Account';
 
@@ -14,6 +15,7 @@ type HeaderProps = {};
  */
 export const Header: FC<HeaderProps> = () => {
   const { address, connected } = useWallet();
+  const isMetaMaskReady = useMetaMaskReady();
   const { selectedNetwork } = useNetwork();
   const { setSelectedNetwork } = useNetworkSelection();
   const { variant, setVariant } = useAdapterVariant();
@@ -69,6 +71,10 @@ export const Header: FC<HeaderProps> = () => {
         <div data-testid={dataTestIds.testPage.header.connectionStatus}>
           {connected ? 'Connected' : 'Not connected'}
         </div>
+      </div>
+      <div style={{ wordWrap: 'break-word' }}>
+        <strong>MetaMask:</strong>
+        <div data-testid={dataTestIds.testPage.header.metamaskReady}>{isMetaMaskReady ? 'ready' : 'not-ready'}</div>
       </div>
       <div style={{ wordWrap: 'break-word' }}>
         <strong>Wallet:</strong>
