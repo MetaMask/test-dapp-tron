@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0]
+
+### Uncategorized
+
+- chore: migrate npm publishing to trusted publishing ([#61](https://github.com/MetaMask/test-dapp-tron/pull/61))
+- feat: hide WalletConnect on testnets ([#60](https://github.com/MetaMask/test-dapp-tron/pull/60))
+
 ### Added
 
 - Expose MetaMask readiness in the test dapp header ([#71](https://github.com/MetaMask/test-dapp-tron/pull/71))
@@ -58,7 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/MetaMask/test-dapp-tron/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/MetaMask/test-dapp-tron/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/MetaMask/test-dapp-tron/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/MetaMask/test-dapp-tron/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/MetaMask/test-dapp-tron/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/MetaMask/test-dapp-tron/compare/v0.2.2...v0.3.0
