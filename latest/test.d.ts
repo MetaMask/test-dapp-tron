@@ -14,6 +14,8 @@ export declare const dataTestIds: Pathify<{
             readonly disconnect: true;
             readonly account: true;
             readonly connectionStatus: true;
+            readonly metamaskReady: true;
+            readonly metamaskAdapterToggle: true;
         };
         readonly signMessage: {
             readonly id: true;
